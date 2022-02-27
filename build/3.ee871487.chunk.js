@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{146:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var u=function(e){return e&&e.__esModule?e:{default:e}}(t(1));n.default=function(){return u.default.createElement("div",null,"This is Workspace!!!")}}}]);
+//# sourceMappingURL=3.ee871487.chunk.js.map

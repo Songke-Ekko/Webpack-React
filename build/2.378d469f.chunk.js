@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{144:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});t(145);var u=function(e){return e&&e.__esModule?e:{default:e}}(t(1));n.default=function(){return u.default.createElement("div",null,"The Fisrt Children page!!!")}}}]);
+//# sourceMappingURL=2.378d469f.chunk.js.map

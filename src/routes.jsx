@@ -1,5 +1,3 @@
-/*eslint-disable*/
-
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
@@ -27,7 +25,7 @@ import Loadable from 'react-loadable';
 
 const IndexContainer = Loadable({
     // 下载依赖包 babel-plugin-dynamic-import-webpack，并且 babelrc 里面配置 "plugins": ["dynamic-import-webpack"]
-    loader: () => import('../src/containers/IndexContainer'),
+    loader: () => import('../src/containers/IndexContainerTs'),
     loading: () => null,
 });
 

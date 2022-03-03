@@ -1,6 +1,8 @@
 'use strict';
 
+const path = require('path');
 const paths = require('./paths');
+const theme = require('./theme');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 const { HotModuleReplacementPlugin } = require('webpack');
@@ -66,9 +68,54 @@ function webpackDevConfig() {
                     test: /\.css$/,
                     use: [
                         'style-loader',
-                        'css-loader',
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                // 可以使得 import 'css' 改写为 import styles from 'css'
+                                modules: true,
+                            }
+                        },
                     ]
                 },
+                // 解析 less
+                {
+                    test: /\.less$/,
+                    use: [
+                        require.resolve('style-loader'),
+                        {
+                            loader: require.resolve('css-loader'),
+                            options: {
+                                importLoaders: 1,
+                                modules: true,
+                            }
+                        },
+                        {
+                            loader: require.resolve('less-loader'),
+                            options: {
+                                modifyVars: theme(),
+                                modules: true,
+                            }
+                        },
+                        // style-recources-loader 设置公共的样式文件
+                        {
+                            loader: require.resolve('style-resources-loader'),
+                            options: {
+                                patterns: [
+                                    path.resolve(__dirname, "../src/common.style.less"),
+                                ]
+                            }
+                        }
+                    ]
+                },
+                // 需要下载 npm 依赖包，ts-loader@4.3.1，typescript，@types/react，@types/node 并且配置 tsconfig.json
+                {
+                    test: /\.tsx?$/,
+                    exclude: paths.appNodeModules,
+                    loader: 'ts-loader',
+                    options: {
+                        configFile: path.resolve(__dirname, '../tsconfig.json')
+                    },
+                }
             ]
         },
         plugins: [
